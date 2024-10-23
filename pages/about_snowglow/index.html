@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Github Home Page">
+        <meta name="author" content="Lyn Snow">
+		<title>Snowy's Site - About Snowglow</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+		<link rel="stylesheet" href="/styles.css">
+        <style>
+            body {
+                background-position: 100%; /* Ensures the image covers the entire page */
+                background-size: 100%; /* Ensures the image covers the entire page */
+                background-repeat: repeat;
+            }
+            
+            /*text, h1, h2, h3, h4, h5, h6, a {
+                text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+            }*/
+
+            section ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            section ul li:before {
+                content: "- ";
+            }
+
+            section li {
+                font-family: 'Segoe UI';
+                font-size: 25px;
+                color: black;
+                text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+                position: relative;
+                z-index: 10000; /* Higher value for the header */
+            }
+        </style>
+    </head>
+    <body>
+		<header>
+			<div class="header-container">
+				<h1><span class="highlight">Kitsune</span> Hub</h1>
+				<nav>
+					<ul>
+						<ul id="header-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<section class="intro">
+                <h1 style="text-align: center;">About Snowglow</h1>
+                <h2 style="padding-top: 50px">Page created and coded by <a href="../about_snowy">Snowy</a></h2>
+                <ul style="padding-top: 100px">
+                    <li>my name is Snow (i wont say my real name :p)</li>
+                    <li>im furry</li>
+                    <li>i am girl</li>
+                    <li>no relationship with Snowy, only friendship.</li>
+                </ul>
+
+                <h2 style="padding-top: 100px">nicknames:</h2>
+                <ul>
+                    <li>Glowy</li>
+                </ul><br><br>
+			</section>
+		</main>>
+	    <script src="/js/oneko.js"></script>
+        <script src="/js/pages/home.js" defer></script>
+	    
+        <script>
+            const bgMusic = ["Iron Furry", "Protogen Evolution", "Cadaver", "Relax Sound", "Sleep Sea", "Moon Theme Remix", "our hearts collide", "Magic Fortuna", ];
+            const chosenMusic = bgMusic[Math.floor(Math.random() * bgMusic.length)];
+            const audio = new Audio();
+
+            if (chosenMusic == "Magic Fortuna") {
+                audio.src = `/misc/glowy/${chosenMusic}.wav`
+            } else {
+                audio.src = `/misc/glowy/${chosenMusic}.mp3`
+            }
+
+            audio.loop = true;
+
+            function pageLoad() {
+                if (localStorage.getItem("glowy bg") == undefined || localStorage.getItem("glowy bg") == null || localStorage.getItem("glowy bg") == "true") {
+                    console.log(localStorage.getItem("glowy bg"));
+                    localStorage.setItem("glowy bg", "false");
+                }
+
+                if (localStorage.getItem("glowy bg") == "false" || !audio.paused) {
+                    localStorage.setItem("glowy bg", "true");
+                    audio.play();
+                }
+            }
+
+            window.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') { // Tab is active
+                    if (localStorage.getItem("glowy bg") == "false" || !audio.paused) {
+                        localStorage.setItem("glowy bg", "true");
+                        audio.play();
+                    }
+                } else { // Tab is not active
+                    audio.pause();
+                    localStorage.setItem("glowy bg", "false")
+                }
+            });
+
+            if (chosenMusic == "Iron Furry") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "Protogen Evolution") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "Cadaver") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "Relax Sound") {
+                audio.volume = 0.2;
+             } else if (chosenMusic == "Sleep Sea") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "Moon Theme Remix") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "our hearts collide") {
+                audio.volume = 0.2;
+            } else if (chosenMusic == "Magic Fortuna") {
+                audio.volume = 0.2;
+            // } else {
+            //     audio.volume = 0.5;
+            }
+
+            window.onload = pageLoad;
+        </script>
+
+		<footer>
+			<div class="footer-container">
+				<h1><span class="highlight">Kitsune</span> Hub</h1>
+				<nav>
+					<ul>
+						<ul id="footer-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+    </body>
+</html>
