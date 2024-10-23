@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="About Snowy">
+        <meta name="author" content="Lyn Snow">
+		<title>Snowy's Site - About Snowy</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+		<link rel="stylesheet" href="/styles.css">
+		
+        <!-- <link rel="stylesheet" href="https://lynsnowie.github.io/misc/css/page_style/about_snowi.css"> -->
+        <style>
+            /* about_snowy is diffrent, it new lol you idiot */
+            /* text, h1, h2, h3, h4, h5, h6, a {
+                text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+            } */
+            body {
+                background-color: #481175;
+            }
+			h2 {
+				font-size: 30px;
+			}
+
+			h3 {
+				font-size: 25px;
+				color: black;
+				text-shadow: -0.8px 0 white, 0 0.5px white, 0.8px 0 white, 0 -0.5px white;
+				padding-bottom: 100px;
+			}
+
+			main h1, h2 {
+                text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+			}
+
+			section ul {
+				list-style-type: none;
+				padding: 0;
+			}
+
+			section ul li:before {
+				content: "- ";
+			}
+
+			section li {
+				font-family: 'Segoe UI';
+				font-size: 25px;
+				color: black;
+				text-shadow: -0.8px 0 white, 0 0.5px white, 0.8px 0 white, 0 -0.5px white;
+				position: relative;
+				z-index: 10000; /* Higher value for the header */
+			}
+        </style>
+
+        <!-- <link rel="stylesheet" href="https://lynsnowie.github.io/misc/css/page_style/about_snowi_misc.css"> -->
+		<style>
+			/* about_snowy_misc */
+			input {
+				width: 200px;
+				padding: 5px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				padding: 5px;
+				border: 1px solid #000000;
+				box-shadow: inset 0 0 5px #000000;
+				border-radius: 5px;
+				outline: none;
+				margin-bottom: 10px;
+				padding: 10px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+			}
+
+			input:focus {
+				box-shadow: inset 0 0 5px #0078d7, 0 0 5px #0078d7;
+			}
+
+			button {
+				/* display: inline-block; */
+				padding: 10px 20px;
+				font: bold 15px Arial;
+				cursor: pointer;
+				/* text-align: center; */
+				/* text-decoration: none; */
+				outline: none;
+				color: black;
+				background-color: white;
+				border: none;
+				border-radius: 15px;
+				box-shadow: 0 9px #999;
+				border-top: 1px solid #F8F8FF;
+				border-right: 1px solid #3b3b3b;
+				border-bottom: 1px solid #3b3b3b;
+				border-left: 1px solid #F8F8FF;
+
+				padding:10px;
+				border-radius: 5px;
+				border: none;
+				background-color:#007BFF;
+				color:#fff;
+			}
+
+			button:hover {
+				transform: scale(1.07);
+			}
+
+			button:active {
+				background-color: #FEFEFA;
+				box-shadow: 0 5px #666;
+				transform: translateY(4px);
+			}
+
+		</style>
+
+		<style>
+			body {
+				margin: 0;
+				height: 100%;
+				background: linear-gradient(135deg, #00FF7F, #8A2BE2, #FFA500);
+				background-size: 300% 300%;
+				animation: gradientAnimation 10s ease infinite;
+			}
+
+			.audiolist {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+			}
+			.audiolist h3 {
+				color:white
+			}
+			.audiolistitem {
+				background-color: #2e104b;
+				border-radius: 20px;
+				border: #00FF7F;
+				border-style: solid;
+				border-color: #00FF7F;
+				flex: 5;
+				height: 300px;
+				width: 400px;
+			}
+
+			audio {color: black;}
+
+			@keyframes gradientAnimation {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+			
+
+			/* Header container styling */
+			.header-container {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+			}
+
+			/* Currently-playing section */
+			.currently-playing {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: #333;
+				visibility: shown;
+				height: 80px;
+				width: 480px;
+				border-bottom-left-radius: 20px;
+				border-bottom-right-radius: 20px;
+				margin: 0 auto; /* Center horizontally */
+				top: 0px; /* Space it under the header */
+			}
+
+			.currently-playing-bottom {
+				position: 100%;
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: #333;
+				height: 80px;
+				width: 480px;
+				border-top-left-radius: 20px;
+				border-top-right-radius: 20px;
+				margin: 0 auto; /* Center horizontally */
+				top: 0px; /* Space it under the header */
+			}
+
+			/* Canvas positioning */
+			canvas {
+				width: 300px;
+				height: 50px;
+				padding-bottom: 5px;
+			}
+			.canbottom {
+				position: bottom;
+				top: -1000px;
+			}
+
+            .content-div {
+                padding: 20px;
+                /* border: 1px solid #ccc; */
+                margin-top: 10px;
+                /* background-color: #f9f9f9; */
+                transition: all 0.3s ease;
+            }
+
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="header-container">
+				<h1><span class="highlight">Kitsune</span> Hub</h1>
+				<nav>
+					<ul>
+						<ul id="header-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+			<div class="header-container">
+				<h1><span class="highlight"></span></h1>
+				<nav>
+					<ul>
+						<ul id="subheader-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+            <section class="intro1">
+                <!-- Currently playing section centered -->
+                <div class="currently-playing">
+					<h4 id="playing-top" style="color: white;">Playing: Nothing</h4>
+                    <canvas id="visualizer"></canvas>
+                </div>
+            </section>
+			<section class="intro">
+
+                <h2>Welcome to Snowy's World!</h2>
+                <p>Snowy's story is full of mystery, adventure, and personal growth. Below you'll find different parts of their life that make them who they are. Click on the buttons to explore their journey!</p>
+
+                <div class="button-container">
+                    <button onclick="showDiv('basicInfo')">Basic Info</button>
+                    <button onclick="showDiv('nicknames')">My nicknames</button>
+                    <button onclick="showDiv('fursonas')">My fursonas</button>
+                    <button onclick="showDiv('additionalInfo')">Additional Info</button>
+                    <button onclick="showDiv('myGoals')">My goals</button>
+                    <button onclick="showDiv('completeledGoals')">Completed Goals</button>
+                    <button onclick="showDiv('randomShitIDone')">Random things I've done</button>
+                    <button onclick="showDiv('misc')">Miscellaneous</button>
+                    <button onclick="showDiv('music')">Music I like</button>
+                    <button onclick="showDiv('stuffIMade')">About stuff I made</button>
+                    <!-- <button onclick="showDiv('whatIsAFurry')">What's a furry?</button> -->
+                    <!-- <button onclick="showDiv('')"></button>
+                    <button onclick="showDiv('')"></button>
+                    <button onclick="showDiv('')"></button>
+                    <button onclick="showDiv('')"></button>
+                    <button onclick="showDiv('')"></button>
+                    <button onclick="showDiv('')"></button> -->
+                </div>
+
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+
+                <div id="basicInfo" class="content-div" style="display:none;">
+                    <ul>
+                        <li>I've got trust issues because of being falsely accused of cheating on Cone.</li>
+                        <li>My birth day is February 7th</li>
+                        <li>I am in the Furry Fandom again.</li> <!-- <li>I am in the furry fandom. Don't pay attention to the antifurs.</li> and I am an Ex-Fur as of 26/07/2024 (DD/MM/YYYY). The fandom was fun. -->
+                        <li>I identify as silly and chaotic 😸👍 (My gender is male)</li>
+                        <li>I am <a id="nonbin redirect">NonBinary</a> and <a id="aroace redirect">Aroace</a> (Any pronouns, doesn't bother me!)</li>
+                        <li>I have <a id="adhd redirect">ADHD</a> and often feel shy talking to people</li>
+                        <li>I sometimes mess about in Roblox Studio</li>
+                        <li>I am interessed in Computers/Technology</li>
+                        <li>I love playing <a id="billards redirect">Billiards Pool</a>, <a id="sims 4 redirect">The Sims 4</a>, <a id="tf2 redirect">Team Fortress 2</a>, <a id="he redirect">Hardware Engineers<a>, and <a id="pcbs redirect">PC Building Simulator</a>, among others as well.</li>
+                        <li>My favorite songs are “The Setup” and “Don’t Come Close”, among others aswell</li>
+                        <li>I mostly <strong>do not</strong> engage in NSFW activities. Sometimes I do.</li>
+                        <li>I love cats! 😺</li>
+                        <li>I have anger issues.</li>
+                        <li>I have depression.</li>
+                        <li>I am in a relationship from what I am aware (I call him Cone or anything else. not bothered)</li>
+                        <!-- <li>I am in a relationship with Issac, otherwise known as cone (Note because I am Aroace doesn't mean I can have someone to keep me company.)</li> -->
+                        <li>I am a femboy (In a femboy phase) because of a bet with Cone.</li>
+                    </ul>
+                </div>
+
+                <div id="nicknames" class="content-div" style="display:none;">
+                    <ul>
+                        <li>Snowie - Fine for all</li>
+                        <li>Snowy - Fine for all</li>
+                        <li>Snows - Fine for Friends and trusted</strong></li>
+                        <li>Snow - Fine for Friends</li>
+                    </ul>
+                </div>
+                
+                <div id="fursonas" class="content-div" style="display:none;">
+                    <ul>
+                        <li>Pixel Fur (previously Rainbowsnout): Female. Cat. Tuxedo</li>
+                        <li>Terabyte: Female. Protogen</li>
+                        <li>Perabyte: Male. Protogen</li>
+                        <li>SnowBlossom: Female. Fox. Arctic Breed</li>
+                    </ul>
+                </div>
+                
+                <div id="additionalInfo" class="content-div" style="display:none;">
+                    <ul>
+                        <li>Based in the UK</li>
+                        <!-- <li><a onclick='redirect("https://en.wikifur.com/wiki/Anti-furries")'>Antifur</a> and <a onclick='redirect("https://en.wikipedia.org/wiki/Zoophilia")'>Zoophile</a> hater 😾</li> -->
+                        <li><a href="https://en.wikifur.com/wiki/Anti-furries">Antifur</a> and <a href="https://en.wikipedia.org/wiki/Zoophilia">Zoophile</a> hater 😾</li>
+                        <li>Started playing Team Fortress 2 in 2016 on another account. Launched TF2 at exactly Sunday, January 3, 2016, 13:41:20 GMT</li>
+                        <li>In Team Fortress 2. My favourite classes are: Pyro and Engineer</li>
+                    </ul>
+                </div>
+                
+                <div id="myGoals" class="content-div" style="display:none;">
+                    <ul>
+                        <li>Find and take photos with a fursuiter</li>
+                        <li>Go to a furry convention</li>
+                    </ul>
+                </div>
+                
+                <div id="completeledGoals" class="content-div" style="display:none;">
+                    <p>None D:</p>
+                </div>
+                
+                <div id="randomShitIDone" class="content-div" style="display:none;">
+					<p>Shot a firearm/gun in the UK. Forgot the day, month and year I've done that</p>
+                </div>
+                
+                <div id="misc" class="content-div" style="display:none;">
+                    <h2 style="font-size: 25px; padding-top: 5px;">What addons/custom things I use for TF2?</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">Hud: Eve Hud</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">Color Schene: 2008</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">You can find my custom folder on <a id="tf2 google drive">google drive</a>.</h2> <!-- https://drive.google.com/drive/folders/1E2Ok-QroC-TVK35oLRF44J4QhtnxBSgO?usp=drive_link -->
+                </div>
+                
+                <div id="music" class="content-div" style="display:none;">
+                    <h2 style="font-size: 25px; padding-top: 5px;">You can find my music folder on <a id="music google drive">google drive</a> or <a href="/pages/about_snowy/music">this page</a></h2> <!-- https://drive.google.com/drive/folders/11bAlOS_Vj__dashdD2hVp2pKe3r83ZcK?usp=sharing -->
+                </div>
+                
+                <div id="stuffIMade" class="content-div" style="display:none;">
+                    <h2 style="font-size: 25px; padding-top: 5px;">Most of the silliness stuff I make is only for friends.</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">But the silliness stuff I made that I am fine with sharing to anyone can be found by <a id="public silly">google drive</a> <!-- https://drive.google.com/drive/folders/1LeMoMT7WP68fFU1iRL_AZjXU-a09jjBI?usp=sharing -->
+                </div>
+                
+                <div id="whatIsAFurry" class="content-div" style="display:none;">
+                    <h2 style="font-size: 25px; padding-top: 5px;">A furry is someone who appreciates, dresses up as, draws, or creates an OC of themselves as an anthropomorphic animal or creature.</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">Furries respect animals and do not wish to be or act like animals.</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">We do not harm animals. Those who do, known as zoos, are not welcome in the community.</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">It’s not a weird thing either. Many people assume furries do strange things in their suits, which is not true. Many furries are minors and don’t engage in such activities.</h2>
+                    <h2 style="font-size: 25px; padding-top: 5px;">Furries don’t hunt animals for fur. We use faux fur, which is synthetic. (Faux fur is fake fur)</h2>
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+                
+                <div id="template" class="content-div" style="display:none;">
+
+                </div>
+            </section>
+            <section class="intro1">
+                <!-- Currently playing section centered -->
+                <div class="currently-playing-bottom">
+                    <canvas id="visualizerbottom" class=".canbottom"></canvas>
+					<h4 id="playing-bottom" style="color: white;">Playing: Nothing</h4>
+                </div>
+            </section>
+            
+		<footer>
+			<div class="header-container">
+				<h1><span class="highlight"></span></h1>
+				<nav>
+					<ul>
+						<ul id="subfooter-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+			<div class="footer-container">
+				<h1><span class="highlight">Kitsune</span> Hub</h1>
+				<nav>
+					<ul>
+						<ul id="footer-nav"></ul>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+        <script>
+            function showDiv(theDiv) {
+                const divs = document.getElementsByClassName("content-div");
+
+                [...divs].forEach(a1 => {
+                    // console.log(a1);
+                    if (a1.id == theDiv) {
+                        console.log("show");
+                        a1.style.display = "block";
+                    } else {
+                        a1.style.display = "none";
+                    }
+                });
+
+            }
+        </script>
+
+		<script src="/js/pages/snowy-bg.js"></script>
+		
+		<script src="/js/oneko.js"></script>
+		<script src="/js/pages/snowy.js"></script>
+		<script src="/js/pages/snowy-subpages.js"></script>
+		<script src="/js/pages/home.js"></script>
+	</body>
+</html>
