@@ -1,10 +1,10 @@
 // Define the menu items
 const snowmenuItems = [
-    { name: "Home", url: "/pages/about_snowy" },
-    { name: "Info", url: "/pages/about_snowy/info" },
-    { name: "Relationships", url: "/pages/about_snowy/relationships" },
+    { name: "Home", url: "/pages/about_snowy/index.html" },
+    { name: "Info", url: "/pages/about_snowy/info.html?show=all" },
+    { name: "Relationships", url: "/pages/about_snowy/relationships.html" },
     { name: "My Playlist", url: "https://drive.google.com/drive/folders/11bAlOS_Vj__dashdD2hVp2pKe3r83ZcK?usp=drive_link" },
-    { name: "Snowy's Lore", url: "/pages/about_snowy/snowys-lore/lore.html" },
+    { name: "Snowy's Lore", url: "/pages/about_snowy/lore.html" },
 ];
 
 function generateNavItems(navId) {
