@@ -8,6 +8,7 @@ const buttonsArray = {
     "Snowy's Boundaries": { "id": "Snowy's Boundaries", "id_content": "Snowy's Boundaries Content", "text": "Snowy's Boundaries" },
     "Flustered and Confused Moments": { "id": "Flustered and Confused Moments", "id_content": "Flustered and Confused Moments Content", "text": "Flustered and Confused Moments" },
     "Snowy's Mental Health": { "id": "Snowy's Mental Health", "id_content": "Snowy's Mental Health Content", "text": "Snowy's Mental Health" },
+    "Song Lyrics That Relate to Snowy": { "id": "Song Lyrics That Relate to Snowy", "id_content": "Song Lyrics That Relate to Snowy Content", "text": "Song Lyrics That Relate to Snowy"},
     "Episodes and Emotional Turmoil": { "id": "Episodes and Emotional Turmoil", "id_content": "Episodes and Emotional Turmoil Content", "text": "Episodes and Emotional Turmoil [Content Warning]" },
     "Depression and Internal Struggles": { "id": "Depression and Internal Struggles", "id_content": "Depression and Internal Struggles Content", "text": "Depression and Internal Struggles [Content Warning]" },
     "Pain and Coping Mechanisms": { "id": "Pain and Coping Mechanisms", "id_content": "Pain and Coping Mechanisms Content", "text": "Pain and Coping Mechanisms" },
@@ -27,7 +28,7 @@ const buttonsArray = {
     "Snowy's Identity": { "id": "Snowy's Identity", "id_content": "Snowy's Identity Content", "text": "Snowy's Identity" },
     "Snowy's Personality": { "id": "Snowy's Personality", "id_content": "Snowy's Personality Content", "text": "Snowy's Personality" },
     "Snowy's Personalities": { "id": "Snowy's Personalities", "id_content": "Snowy's Personalities Content", "text": "Snowy's Personalities" },
-    "Snowy's Gender and Pronouns Content": { "id": "Snowy's Gender and Pronouns Content", "id_content": "Snowy's Gender and Pronouns Content Content", "text": "Snowy's Gender and Pronouns Content" },
+    "Snowy's Gender and Pronouns Content": { "id": "Snowy's Gender and Pronouns", "id_content": "Snowy's Gender and Pronouns Content", "text": "Snowy's Gender and Pronouns" },
     "Furry Fandom and Fursonas": { "id": "Furry Fandom and Fursonas", "id_content": "Furry Fandom and Fursonas Content", "text": "Furry Fandom and Fursonas" },
     "Silly Bits": { "id": "Silly Bits", "id_content": "Silly Bits Content", "text": "Silly Bits" },
     "Additional Confirmations": { "id": "Additional Confirmations", "id_content": "Additional Confirmations Content", "text": "Additional Confirmations" },
@@ -122,29 +123,52 @@ buttons.forEach(button => {
 
             content.classList.remove('hidden');
             content.classList.add('shown');
+        } else {
+            if (button.id == "Song Lyrics Relating to Snowy") {
+                console.log("fun time");
+                const songSnowyContent = document.getElementById("Song Lyrics That Relate to Snowy Content");
+                
+                hideAll();
+                if (prevContent !== null) {
+                    prevContent.classList.remove('shown');
+                    prevContent.classList.add('hidden');
+                }
+    
+                if (currentContent !== null) {
+                    currentContent.classList.remove('shown');
+                    currentContent.classList.add('hidden');
+                }
+                prevContent = songSnowyContent
+                currentContent = songSnowyContent
+    
+                songSnowyContent.classList.remove('hidden');
+                songSnowyContent.classList.add('shown');
+            }
         }
     })
 });
 
-// for (let i = 0; i < children.length; i++) {
-//     const child = children[i];
+/*
+for (let i = 0; i < children.length; i++) {
+    const child = children[i];
     
-//     newButton.onclick = (function (data) {
-//         if (data.id_content === child.id) {
-//             console.log(`[Lore] ${child.id} is equal to ${data.id_content}`);
-//             hideAll();
-//             child.classList.remove('hidden');
-//             child.classList.add('shown');
-//             // if (child.classList.contains('shown')) {
-//             //     child.classList.remove('shown');
-//             //     child.classList.add('hidden');
-//             // } else {
-//             //     child.classList.remove('hidden');
-//             //     child.classList.add('shown');
-//             // }
-//         }
-//     });
-// }
+    newButton.onclick = (function (data) {
+        if (data.id_content === child.id) {
+            console.log(`[Lore] ${child.id} is equal to ${data.id_content}`);
+            hideAll();
+            child.classList.remove('hidden');
+            child.classList.add('shown');
+            if (child.classList.contains('shown')) {
+                child.classList.remove('shown');
+                child.classList.add('hidden');
+            } else {
+                child.classList.remove('hidden');
+                child.classList.add('shown');
+            }
+        }
+    });
+}
+*/
 
 
 document.querySelectorAll('.content-warning-section').forEach(section => {
@@ -170,119 +194,191 @@ document.querySelectorAll('.content-warning-section').forEach(section => {
     });
 });
 
+const selectedLyric = document.getElementById('lyrics-selected');
+const lyricSections = {
+    "Depressive": "/snowy/lyrics/Depressive",
+    "Depressive Maybe": "/snowy/lyrics/Depressive Maybe",
+    "Neutral": "/snowy/lyrics/Neutral",
+    // "Love & Relationships": "/snowy/lyrics/Love & Relationships",
+    "Silly & Chaotic": "/snowy/lyrics/Silly & Chaotic",
+    // "Empowering & Resilient": "/snowy/lyrics/Empowering & Resilient",
+    "Mysterious & Thoughtful": "/snowy/lyrics/Mysterious & Thoughtful",
+    "Miscellaneous": "/snowy/lyrics/Miscellaneous",
+};
+
+function createLyricButtons() {
+    selectedLyric.innerHTML = "";
+    const buttonContainer = document.getElementById('lyric-buttons');
+    Object.keys(lyricSections).forEach(section => {
+        const button = document.createElement('button');
+        button.textContent = section;
+        button.onclick = () => loadLyrics(section);
+        buttonContainer.appendChild(button);
+    });
+}
+
+function loadLyrics(section) {
+    const contentDiv = document.getElementById('lyric-content');
+    contentDiv.innerHTML = "";
+    selectedLyric.innerHTML = "";
+    const sectionPath = lyricSections[section];
+
+    fetch(`${sectionPath}/lyrics.js`)
+        .then(response => response.json())
+        .then(data => {
+            Object.entries(data).forEach(([artist, songs]) => {
+                console.log(artist);
+                Object.entries(songs).forEach(([title, info]) => {
+                    const songDiv = document.createElement('div');
+                    songDiv.className = "song-lyrics";
+                    songDiv.innerHTML = `
+                        <h3>${artist} - ${title}</h3><br><br>
+                        <button onclick="fetchLyrics('${sectionPath}/${artist} - ${title}.txt', '${artist}', '${title}')">View Lyrics</button>
+                    `;
+                    // <p><b>Reason:</b> ${info.reason}</p> /* after artist title */
+                    contentDiv.appendChild(songDiv);
+                });
+            });
+        });
+}
+
+function fetchLyrics(path, artist, songTitle) {
+    fetch(path)
+        .then(response => response.text())
+        .then(lyrics => {
+            const contentDiv = document.getElementById('lyric-content');
+            const lyricDisplay = document.createElement('div');
+            lyricDisplay.className = "lyric-display";
+            lyricDisplay.id = "snowy-song-lyric-display";
+            lyricDisplay.textContent = lyrics;
+            lyricDisplay.style.backgroundColor = "transparent";
+            contentDiv.innerHTML = "";
+            if (document.getElementById('snowy-song-lyric-display')) {
+                const lyricDisplaySnow = document.getElementById('snowy-song-lyric-display');
+                lyricDisplaySnow.remove();
+            }
+            contentDiv.appendChild(lyricDisplay);
+            selectedLyric.innerHTML = `Selected ${songTitle} by ${artist}`;
+        });
+}
+
+window.onload = createLyricButtons;
 
 
-// new
-// const curseWords = ["fuck"];
-// const censorshipButton = document.getElementById("toggle-censorship");
-// let censored = localStorage.getItem("snow-lore-censorship");
 
-// function censorshipUpdate()
-// {
-//     localStorage.getItem("snow-lore-censorship") = !localStorage.getItem("snow-lore-censorship")
-//     censored = !censored
-// }
+/*
+new
+const curseWords = ["fuck"];
+const censorshipButton = document.getElementById("toggle-censorship");
+let censored = localStorage.getItem("snow-lore-censorship");
 
-// if (censored == undefined || censored == null) {
-//     censorshipUpdate();
-// }
+function censorshipUpdate()
+{
+    localStorage.getItem("snow-lore-censorship") = !localStorage.getItem("snow-lore-censorship")
+    censored = !censored
+}
+
+if (censored == undefined || censored == null) {
+    censorshipUpdate();
+}
 
 
-// function toggleCensorship() {
-//     censored.current = !censored.current;
+function toggleCensorship() {
+    censored.current = !censored.current;
 
-//     console.log(censored.current)
+    console.log(censored.current)
 
-//     if (censored.current == true)
-//     {
-//         censored.current_string = "on";
-//     } else {
-//         censored.current_string = "off";
-//     }
+    if (censored.current == true)
+    {
+        censored.current_string = "on";
+    } else {
+        censored.current_string = "off";
+    }
 
-//     const censorshipElements = document.querySelectorAll("#censorship");
+    const censorshipElements = document.querySelectorAll("#censorship");
 
-//     if (censored.current == true)
-//     {
-//         censorshipElements.forEach(el => {
-//             curseWords.forEach(curseWord => {
-//                 const regex = new RegExp(`\\b${curseWord}\\b`, 'gi');
-//                 let replaceText = el.innerHTML.replace(regex, match => { return match[0] + curseWord.toUpperCase().slice(+1); });
+    if (censored.current == true)
+    {
+        censorshipElements.forEach(el => {
+            curseWords.forEach(curseWord => {
+                const regex = new RegExp(`\\b${curseWord}\\b`, 'gi');
+                let replaceText = el.innerHTML.replace(regex, match => { return match[0] + curseWord.toUpperCase().slice(+1); });
 
-//                 if (el.innerHTML.includes("everyone~"))
-//                 {
-//                     el.innerHTML = el.innerHTML.replace(regex, match => {
-//                         return match[0] + "*".repeat(match.length - 2) + curseWord.slice(-1);
-//                     });
-//                 } else {
-//                     el.innerHTML = replaceText
-//                 }
-//             });
-//         });
-//     } else {
-//         censorshipElements.forEach(el => {
-//             curseWords.forEach(curseWord => {
-//                 const regex = new RegExp(`\\b${curseWord}\\b`, 'gi');
-//                 let replaceText = el.innerHTML.replace(regex, match => { return match[0] + "*".repeat(match.length - 2) + curseWord.toUpperCase().slice(-1); });
-//                 if (el.innerHTML.includes("everyone~"))
-//                 {
-//                     el.innerHTML = el.innerHTML.replace(regex, match => {
-//                         return match[0] + "*".repeat(match.length - 2) + curseWord.slice(-1);
-//                     });
-//                 } else {
-//                     el.innerHTML = replaceText
-//                 }
+                if (el.innerHTML.includes("everyone~"))
+                {
+                    el.innerHTML = el.innerHTML.replace(regex, match => {
+                        return match[0] + "*".repeat(match.length - 2) + curseWord.slice(-1);
+                    });
+                } else {
+                    el.innerHTML = replaceText
+                }
+            });
+        });
+    } else {
+        censorshipElements.forEach(el => {
+            curseWords.forEach(curseWord => {
+                const regex = new RegExp(`\\b${curseWord}\\b`, 'gi');
+                let replaceText = el.innerHTML.replace(regex, match => { return match[0] + "*".repeat(match.length - 2) + curseWord.toUpperCase().slice(-1); });
+                if (el.innerHTML.includes("everyone~"))
+                {
+                    el.innerHTML = el.innerHTML.replace(regex, match => {
+                        return match[0] + "*".repeat(match.length - 2) + curseWord.slice(-1);
+                    });
+                } else {
+                    el.innerHTML = replaceText
+                }
                 
-//             });
-//         });
-//     }
-// }
+            });
+        });
+    }
+}
 
-// window.onload = function() {
-//     console.log("mwe");
+window.onload = function() {
+    console.log("mwe");
 
-//     if (censored.current == null) {
-//         censored.current = censored.default;
-//     } else {
-//         censored.current = localStorage.getItem("snow-lore-censorship");
-//     }
+    if (censored.current == null) {
+        censored.current = censored.default;
+    } else {
+        censored.current = localStorage.getItem("snow-lore-censorship");
+    }
 
-//     toggleCensorship();
+    toggleCensorship();
 
-//     censorshipButton.addEventListener("click", toggleCensorship);
+    censorshipButton.addEventListener("click", toggleCensorship);
 
-//     const entries = performance.getEntriesByType("navigation");
-//     if (entries.length > 0 && entries[0].type === "reload") {
-//         localStorage.setItem("snow-lore-censorship", censored.current);
-//     }
-// }
+    const entries = performance.getEntriesByType("navigation");
+    if (entries.length > 0 && entries[0].type === "reload") {
+        localStorage.setItem("snow-lore-censorship", censored.current);
+    }
+}
 
-// const toggleCensorship = document.getElementById("toggle-censorship");
+const toggleCensorship = document.getElementById("toggle-censorship");
 
-// let isCensored_Default = true;
-// let isCensored = localStorage.getItem("snow-lore-censorship");
+let isCensored_Default = true;
+let isCensored = localStorage.getItem("snow-lore-censorship");
 
-// const toggleCurseWords = () => {
-//     console.log("a");
-//     const elements = document.querySelectorAll("#censorship");
-//     isCensored = !isCensored_Default;
-//     toggleCensorship.textContent = `Censor Curse Words: ${isCensored ? "ON" : "OFF"}`;
+const toggleCurseWords = () => {
+    console.log("a");
+    const elements = document.querySelectorAll("#censorship");
+    isCensored = !isCensored_Default;
+    toggleCensorship.textContent = `Censor Curse Words: ${isCensored ? "ON" : "OFF"}`;
 
-//     elements.forEach(el => {
-//         if (isCensored) {
-//             el.textContent = el.textContent[0] + "*".repeat(el.textContent.length - 1);
-//         }
-//     });
+    elements.forEach(el => {
+        if (isCensored) {
+            el.textContent = el.textContent[0] + "*".repeat(el.textContent.length - 1);
+        }
+    });
 
-//     localStorage.setItem("snow-lore-censorship", isCensored ? "on" : "off");
-// };
+    localStorage.setItem("snow-lore-censorship", isCensored ? "on" : "off");
+};
 
-// toggleCensorship.addEventListener("click", toggleCurseWords);
+toggleCensorship.addEventListener("click", toggleCurseWords);
 
-// // Load Preferences
-// const savedCensorship = localStorage.getItem("snow-lore-censorship") || "on";
+// Load Preferences
+const savedCensorship = localStorage.getItem("snow-lore-censorship") || "on";
 
-// isCensored = savedCensorship === "on";
-// toggleCensorship.textContent = `Censor Curse Words: ${isCensored ? "ON" : "OFF"}`;
+isCensored = savedCensorship === "on";
+toggleCensorship.textContent = `Censor Curse Words: ${isCensored ? "ON" : "OFF"}`;
 
-// toggleCurseWords();
+toggleCurseWords();
+*/
