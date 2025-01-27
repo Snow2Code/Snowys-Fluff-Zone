@@ -8,7 +8,7 @@ const buttonsArray = {
     "Snowy's Boundaries": { "id": "Snowy's Boundaries", "id_content": "Snowy's Boundaries Content", "text": "Snowy's Boundaries" },
     "Flustered and Confused Moments": { "id": "Flustered and Confused Moments", "id_content": "Flustered and Confused Moments Content", "text": "Flustered and Confused Moments" },
     "Snowy's Mental Health": { "id": "Snowy's Mental Health", "id_content": "Snowy's Mental Health Content", "text": "Snowy's Mental Health" },
-    "Song Lyrics That Relate to Snowy": { "id": "Song Lyrics That Relate to Snowy", "id_content": "Song Lyrics That Relate to Snowy Content", "text": "Song Lyrics That Relate to Snowy"},
+    // "Song Lyrics That Relate to Snowy": { "id": "Song Lyrics That Relate to Snowy", "id_content": "Song Lyrics That Relate to Snowy Content", "text": "Song Lyrics That Relate to Snowy"},
     "Episodes and Emotional Turmoil": { "id": "Episodes and Emotional Turmoil", "id_content": "Episodes and Emotional Turmoil Content", "text": "Episodes and Emotional Turmoil [Content Warning]" },
     "Depression and Internal Struggles": { "id": "Depression and Internal Struggles", "id_content": "Depression and Internal Struggles Content", "text": "Depression and Internal Struggles [Content Warning]" },
     "Pain and Coping Mechanisms": { "id": "Pain and Coping Mechanisms", "id_content": "Pain and Coping Mechanisms Content", "text": "Pain and Coping Mechanisms" },
