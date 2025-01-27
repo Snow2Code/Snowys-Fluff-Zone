@@ -1,10 +1,10 @@
 // Define the menu items
 const menuItems = [
     { name: "Home", url: "/" },
-    { name: "About Snowy", url: "/pages/about_snowy" },
+    { name: "About Snowy", url: "/pages/about/snowy" },
     // { name: "About Lolie", url: "file:///I:/new%20silly%20site/pages/about_lolie" }, // Fuck you Lynn/lolie. you crazy nigga trying to break my relationship and me.
     // { name: "About Glowy", url: "/pages/about_snowglow" },
-    // Add more items here as needed
+    { name: "Inquiries", url: "/pages/inquiries"}
 ];
 
 function generateNavItems(navId) {

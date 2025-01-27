@@ -28,9 +28,11 @@ const params = {
         snowys_languages: "Snowy's Languages Content",
         early_life_and_adhd: "Early Life and ADHD Content",
         aroace_identity: "Aroace Identity Content",
+        Snowys_Boundaries: "Snowy's Boundaries Content",
         snowys_boundaries: "Snowy's Boundaries Content",
         flustered_and_confused_momments: "Flustered and Confused Moments Content",
         snowys_mental_health: "Snowy's Mental Health Content",
+        song_lyrics: "Song Lyrics That Relate to Snowy Content",
         episodes_and_emotional_turmoil: "Episodes and Emotional Turmoil Content",
         depression_and_internal_struggles: "Depression and Internal Struggles Content",
         pain_and_coping_mechanisms: "Pain and Coping Mechanisms Content",
@@ -43,8 +45,8 @@ const params = {
         relationship_with_cone: "Relationship with Cone Content",
         spelling_and_text_habits: "Spelling and Text Habits Content",
         meowing_habit: "Meowing Habit Content",
-        fembpy_phase: "Femboy Phase Content",
-        fembpy_phase_update: "Femboy Phase Update Content",
+        femboy_phase: "Femboy Phase Content",
+        femboy_phase_update: "Femboy Phase Update Content",
         snowys_appearance_and_changing_fur: "Snowy's Appearance and Changing Fur Content",
         snows_tail_and_fluff: "Snowy's Tail and Fluff Content",
         snowys_identity: "Snowy's Identity Content",
@@ -94,13 +96,13 @@ function doSomeShit(page, pageSub, id)
         allDivs.forEach(div => {
             if (div.id !== targetDivId) {
                 // If the show param is not all, hide all other contents. Meow!
-                if (pageSub == "pages/about_snowy/info")
+                if (pageSub == "pages/about/snowy/info")
                 {
                     if (targetDivId != "all")
                     {
                         div.style.display = "none"; // Show the needed infos
                     }
-                } else if (pageSub == "pages/about_snowy/relationship") {
+                } else if (pageSub == "pages/about/snowy/relationship") {
                     if (id == "invalid") // If the param is invalid, we hide all other content
                     {
                         document.getElementById("invalid").style.display = "block"; // Show the matching div
@@ -125,14 +127,14 @@ let paramOut = null;
 // ¯\_(ツ)_/¯
 // stoopid way to do params, but I did what I could do. It works doe, so it doesn't matter
 // ¯\_(ツ)_/¯
-if (fileNameSubFolders == "pages/about_snowy/relationship")
+if (fileNameSubFolders == "pages/about/snowy/relationship")
 {
     param = getParam("snowship");
     paramOut = `?showship=${param}`;
-} else if (fileNameSubFolders == "pages/about_snowy/info") {
+} else if (fileNameSubFolders == "pages/about/snowy/info") {
     param = getParam("show");
     paramOut = `?show=${param}`;
-} else if (fileNameSubFolders == "pages/about_snowy/lore") {
+} else if (fileNameSubFolders == "pages/about/snowy/lore") {
     param = getParam("showloresec")
     paramOut = `?showloresec=${param}`;
 }
@@ -145,13 +147,13 @@ if (fileName && params[fileName][param])
 
     doSomeShit(fileName, fileNameSubFolders, param);
 } else {
-    if (fileNameSubFolders == "pages/about_snowy/relationship")
+    if (fileNameSubFolders == "pages/about/snowy/relationship")
     {
         doSomeShit(fileName, fileNameSubFolders, "invalid");
-    } else if (fileNameSubFolders == "pages/about_snowy/info") {
+    } else if (fileNameSubFolders == "pages/about/snowy/info") {
         console.warn(`Invalid paramter of '${param}'.\n\n`)
         console.log("Valid Paramters:\naccounts\nforfren_forfun\nsome_infos\nnicknames\naddit_info\ngoals\ncompgoals\ncompgoalsnonplanned\nmisc\nlistentomusic\nshitmade\nwhatisfurry\n")
-    } else if (fileNameSubFolders == "pages/about_snowy/lore") {
+    } else if (fileNameSubFolders == "pages/about/snowy/lore") {
         console.log("\n[Lore Paramters] showing all content\n");
     }
 }
