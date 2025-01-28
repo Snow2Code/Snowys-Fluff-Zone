@@ -4,6 +4,7 @@
 
 const buttonsArray = {
     "info": { "id": "Info", "text": "Info"},
+    "afraid": { "id": "Afraid and Not Afraid to do", "text": "Afraid and Not Afraid to do"},
 };
 
 /**
